@@ -1,12 +1,13 @@
 import React from "react";
 import Types from "../components/Types";
+import Card from "../components/Card";
 
 const HomePage = () => {
   return (
-    <>
+    <div>
       <div className="text-3xl font-bold underline">HomePage</div>
+      <Card />
       <div className="flex flex-col gap-1 w-max">
-        {" "}
         <Types type="normal" />
         <Types type="fire" />
         <Types type="water" />
@@ -24,9 +25,9 @@ const HomePage = () => {
         <Types type="dragon" />
         <Types type="dark" />
         <Types type="steel" />
-        <Types type="fairy" />{" "}
+        <Types type="fairy" />
       </div>
-    </>
+   </div>
   );
 };
 
