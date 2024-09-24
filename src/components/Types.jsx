@@ -27,7 +27,7 @@ const typeColors = {
 const Types = ({ type }) => {
   const typeClass = twMerge(
     clsx(
-      "px-2 py-1 rounded border-black/20 font-semibold text-xs w-max",
+      "px-2 py-1 rounded border border-black/20 font-semibold text-xs w-max",
       typeColors[type.toLowerCase()]
     )
   );
