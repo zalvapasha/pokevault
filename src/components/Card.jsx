@@ -1,12 +1,15 @@
 import React from "react";
 import pokeBall from "../assets/pokemon-ball.svg";
+import Types from "./Types";
+import PokeImage from "./PokeImage";
 
 const Card = () => {
   return (
     <article className="w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-4 border-t-2 border-b-4 border-black justify-start items-start gap-3 inline-flex">
-      <div className="w-[98px] h-[116px] bg-[#c8d372] rounded-lg border border-black justify-center items-center gap-2 flex">
-        <img className="w-20 h-20" src="https://via.placeholder.com/80x80" />
-      </div>
+      <PokeImage
+        type="grass"
+        url="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+      />
       <div className="grow shrink basis-0 h-[116px] flex-col justify-start items-start inline-flex">
         <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start gap-[123px] flex">
           <div className="self-stretch grow shrink basis-0 flex-col justify-between items-start flex">
@@ -28,11 +31,7 @@ const Card = () => {
                 50 moves
               </p>
               <div className="justify-start items-start gap-1 inline-flex">
-                <div className="px-2 py-1 bg-[#adba44] rounded border border-black/20 justify-center items-center gap-2 flex">
-                  <p className="text-white text-xs font-semibold leading-none">
-                    BUG
-                  </p>
-                </div>
+                <Types type="grass" />
               </div>
             </div>
           </div>
