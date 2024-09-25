@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
-import { fetchPokemonDetails } from "../utils/api";
+import { fetchData } from "../utils/api";
 
 const HomePage = () => {
   const [page, setPage] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+    "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0"
   );
-  const [pokemonData, setPokemonData] = useState([]);
   const [pagination, setPagination] = useState({ next: null, previous: null });
+  const [pokemonData, setPokemonData] = useState([]);
+
+  const getData = async () => {
+    try {
+      const data = await fetchData(page);
+      setPokemonData(data.results);
+      setPagination({ next: data.next, previous: data.previous });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchPokemonDetails(page);
-      if (data) {
-        console.log(data.pokemonDetails, data.next, data.previous);
-        setPokemonData(data.pokemonDetails);
-        setPagination({ next: data.next, previous: data.previous });
-      }
-    };
-
-    fetchData();
+    getData();
   }, [page]);
 
   const handleNext = () => {
@@ -39,7 +40,9 @@ const HomePage = () => {
       <div className="text-3xl font-bold underline">HomePage</div>
 
       <div className="grid grid-cols-2 gap-4">
-        <Card />
+        {pokemonData.map((poke, i) => (
+          <Card key={i} url={poke.url} />
+        ))}
       </div>
 
       <div className="flex justify-between mt-4">
