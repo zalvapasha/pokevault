@@ -25,6 +25,9 @@ const typeColors = {
 
 // Declare pokemon types tag
 const Types = ({ type }) => {
+  if (!type) {
+    return null;
+  }
   const typeClass = twMerge(
     clsx(
       "px-2 py-1 rounded border border-black/20 font-semibold text-xs w-max",

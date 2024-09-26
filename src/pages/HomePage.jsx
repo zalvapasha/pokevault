@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { fetchData } from "../utils/api";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [page, setPage] = useState(
@@ -35,14 +36,30 @@ const HomePage = () => {
     }
   };
 
+  // const getMovesData = async () => {
+  //   try {
+  //     const data = await fetchData("https://pokeapi.co/api/v2/move/");
+  //     console.log(data, "ini data");
+  //   } catch (error) {}
+  // };
+
+  // useEffect(() => {
+  //   getMovesData();
+  // });
+
   return (
     <div>
       <div className="text-3xl font-bold underline">HomePage</div>
 
       <div className="grid grid-cols-2 gap-4">
-        {pokemonData.map((poke, i) => (
-          <Card key={i} url={poke.url} />
-        ))}
+        {pokemonData.map((poke, i) => {
+          const pokeId = poke.url.split("/").filter(Boolean).pop();
+          return (
+            <Link key={i} to={`/detail/${pokeId}`}>
+              <Card url={poke.url} />
+            </Link>
+          );
+        })}
       </div>
 
       <div className="flex justify-between mt-4">
