@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
+import FavoritePage from "./pages/FavoritePage";
 import DetailPage from "./pages/DetailPage";
+
 
 const router = createBrowserRouter([
   {
@@ -13,11 +15,15 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "/favorites",
+        element: <FavoritePage />,
+      },
+      {
         path: "*", //Error handling
         element: <ErrorPage />,
       },
       {
-        path: "/detail/:id", //Error handling
+        path: "/detail/:id", 
         element: <DetailPage />,
       },
     ],

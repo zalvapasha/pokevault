@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
 import pokeBall from "../assets/pokemon-ball.svg";
+import pokeballFilled from "../assets/pokemon-ball-filled.svg";
 import Types from "./Types";
 import PokeImage from "./PokeImage";
 import { fetchDetails } from "../utils/api";
+import { useFavoritePokemon } from "../hooks/useFavoritePokemon";
 
 const Card = ({ url }) => {
   const [details, setDetails] = useState({});
+
+  const [isFavorite, toggleFavorite] = useFavoritePokemon(
+    details.id,
+    details.name,
+    url
+  );
 
   async function getDetails() {
     try {
@@ -40,7 +48,11 @@ const Card = ({ url }) => {
                   </p>
                 </div>
               </div>
-              <img src={pokeBall} className="w-8 h-8 relative" />
+              <img
+                src={isFavorite ? pokeballFilled : pokeBall}
+                onClick={toggleFavorite}
+                className="w-8 h-8 relative"
+              />
             </div>
             <div className="flex-col justify-start items-start gap-2 flex">
               <p className="text-[#454545] italic text-[13px] font-normal leading-[18.20px]">

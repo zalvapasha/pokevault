@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { fetchData } from "../utils/api";
+import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+
 
 const HomePage = () => {
   const [page, setPage] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0"
+    "https://pokeapi.co/api/v2/pokemon?limit=18&offset=0"
   );
   const [pagination, setPagination] = useState({ next: null, previous: null });
   const [pokemonData, setPokemonData] = useState([]);
@@ -48,10 +51,26 @@ const HomePage = () => {
   // });
 
   return (
-    <div>
-      <div className="text-3xl font-bold underline">HomePage</div>
-
-      <div className="grid grid-cols-2 gap-4">
+    <main className="max-w-5xl mx-auto flex flex-col items-center mb-10">
+      <section className="flex justify-between max-w-[992px]  w-full mb-4">
+        <div className="flex gap-2 mt-4">
+          <button
+            onClick={handlePrevious}
+            disabled={!pagination.previous}
+            className="bg-[#efefef] rounded-lg border-l-2 border-r-2 border-t-2 border-b-2 border-black p-3 transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:shadow-none disabled:translate-x-[3px] disabled:translate-y-[3px]"
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={!pagination.next}
+            className="bg-[#efefef] rounded-lg border-l-2 border-r-2 border-t-2 border-b-2 border-black p-3 transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:translate-x-[3px] disabled:translate-y-[3px]"
+          >
+            <FaArrowRight />
+          </button>
+        </div>
+      </section>
+      <div className="flex flex-wrap gap-4 max-w-[992px]">
         {pokemonData.map((poke, i) => {
           const pokeId = poke.url.split("/").filter(Boolean).pop();
           return (
@@ -61,24 +80,7 @@ const HomePage = () => {
           );
         })}
       </div>
-
-      <div className="flex justify-between mt-4">
-        <button
-          onClick={handlePrevious}
-          disabled={!pagination.previous}
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={!pagination.next}
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
-        >
-          Next
-        </button>
-      </div>
-    </div>
+    </main>
   );
 };
 
