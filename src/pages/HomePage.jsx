@@ -5,7 +5,6 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-
 const HomePage = () => {
   const [page, setPage] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=18&offset=0"
@@ -72,11 +71,11 @@ const HomePage = () => {
       </section>
       <div className="flex flex-wrap gap-4 max-w-[992px]">
         {pokemonData.map((poke, i) => {
-          const pokeId = poke.url.split("/").filter(Boolean).pop();
+          // const pokeId = poke.url.split("/").filter(Boolean).pop();
           return (
-            <Link key={i} to={`/detail/${pokeId}`}>
-              <Card url={poke.url} />
-            </Link>
+            // <Link key={i} to={`/detail/${pokeId}`}>
+            <Card url={poke.url} />
+            /* </Link> */
           );
         })}
       </div>

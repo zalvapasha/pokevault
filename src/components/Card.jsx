@@ -5,6 +5,8 @@ import Types from "./Types";
 import PokeImage from "./PokeImage";
 import { fetchDetails } from "../utils/api";
 import { useFavoritePokemon } from "../hooks/useFavoritePokemon";
+import { Link } from "react-router-dom";
+import { toTitleCase } from "../utils/utils";
 
 const Card = ({ url }) => {
   const [details, setDetails] = useState({});
@@ -27,11 +29,15 @@ const Card = ({ url }) => {
   });
 
   return (
-    <article className="w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-4 border-t-2 border-b-4 border-black justify-start items-start gap-3 inline-flex">
+    <Link
+      to={`/detail/${details.id}`}
+      className="w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-4 border-t-2 border-b-4 border-black justify-start items-start gap-3 inline-flex"
+    >
       {details.sprites && details.types && (
         <PokeImage
           type={details.types[0]?.type?.name}
           url={details.sprites.other["official-artwork"].front_default}
+          size="default"
         />
       )}
       <div className="grow shrink basis-0 h-[116px] flex-col justify-start items-start inline-flex">
@@ -41,7 +47,7 @@ const Card = ({ url }) => {
               <div className="flex-col justify-start items-start inline-flex">
                 <div className="flex-col justify-start items-start flex">
                   <h3 className="text-[#080808] text-lg font-semibold leading-[25.20px]">
-                    {details.name}
+                    {toTitleCase(details.name)}
                   </h3>
                   <p className="text-[#454545] text-sm font-normal leading-tight">
                     № {details.id}
@@ -67,7 +73,7 @@ const Card = ({ url }) => {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
 

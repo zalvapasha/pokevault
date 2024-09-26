@@ -1,3 +1,14 @@
 {
-  "favorites": []
+  "favorites": [
+    {
+      "id": "2",
+      "name": "ivysaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/2/"
+    },
+    {
+      "id": "4",
+      "name": "charmander",
+      "url": "https://pokeapi.co/api/v2/pokemon/4/"
+    }
+  ]
 }

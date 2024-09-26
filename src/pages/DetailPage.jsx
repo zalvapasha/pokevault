@@ -36,12 +36,13 @@ const DetailPage = ({ details }) => {
 
   return (
     <main className="max-w-[960px] mx-auto justify-center">
-      <div className="grid grid-cols-2 gap-3">
-        <div className="flex flex-col gap-3 px-3 py-3 border rounded-lg border-[#e0e0e0] bg-[#EFEFEF]">
+      <div className="grid grid-cols-2 gap-3 mt-5 mb-5">
+        <div className="flex flex-col gap-3 px-3 py-3 border rounded-lg border-[#000] bg-[#EFEFEF]">
           <div className="flex flex-row gap-4">
             <PokeImage
               type={detailPage.types[0]?.type?.name}
               url={detailPage.sprites.other["official-artwork"].front_default}
+              size="detail"
             />
             <div className="flex flex-col gap-2 w-full">
               <h3 className="text-[#080808] text-lg font-semibold leading-[25.20px]">
@@ -95,14 +96,14 @@ const DetailPage = ({ details }) => {
           </div>
         </div>
 
-        <div className="flex flex-col px-3 py-3 gap-3 border rounded-md border-[#e0e0e0] bg-[#EFEFEF]">
+        <div className="flex flex-col px-3 py-3 gap-3 border rounded-md border-[#000] bg-[#EFEFEF]">
           <h1 className="text-[#080808] text-base font-semibold">Abilities</h1>
           {detailPage.abilities?.map((abilities, i) => (
             <AbilitiesCard key={i} abilities={abilities} />
           ))}
         </div>
         <div className="col-span-2">
-          <div className="flex flex-col px-3 py-3 gap-3 border rounded-md border-[#e0e0e0] bg-[#EFEFEF]">
+          <div className="flex flex-col px-3 py-3 gap-3 border rounded-md border-[#000] bg-[#EFEFEF]">
             <h1 className="text-[#080808] text-base font-semibold">
               Moves Lists
             </h1>
