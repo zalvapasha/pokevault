@@ -3,6 +3,8 @@ import Card from "../components/Card";
 import { fetchData } from "../utils/api";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+
 
 const HomePage = () => {
   const [page, setPage] = useState(
@@ -37,6 +39,17 @@ const HomePage = () => {
     }
   };
 
+  // const getMovesData = async () => {
+  //   try {
+  //     const data = await fetchData("https://pokeapi.co/api/v2/move/");
+  //     console.log(data, "ini data");
+  //   } catch (error) {}
+  // };
+
+  // useEffect(() => {
+  //   getMovesData();
+  // });
+
   return (
     <main className="max-w-5xl mx-auto flex flex-col items-center mb-10">
       <section className="flex justify-between max-w-[992px]  w-full mb-4">
@@ -57,11 +70,15 @@ const HomePage = () => {
           </button>
         </div>
       </section>
-
       <div className="flex flex-wrap gap-4 max-w-[992px]">
-        {pokemonData.map((poke, i) => (
-          <Card key={i} url={poke.url} />
-        ))}
+        {pokemonData.map((poke, i) => {
+          const pokeId = poke.url.split("/").filter(Boolean).pop();
+          return (
+            <Link key={i} to={`/detail/${pokeId}`}>
+              <Card url={poke.url} />
+            </Link>
+          );
+        })}
       </div>
     </main>
   );

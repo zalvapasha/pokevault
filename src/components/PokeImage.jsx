@@ -23,10 +23,15 @@ const imageColors = {
   fairy: "bg-[#F0B6BC]/50",
 };
 
-const PokeImage = ({ type, url }) => {
+const scaleImage = {
+  card: "scale-100",
+  detail: "scale-150",
+};
+
+const PokeImage = ({ type, scale, url }) => {
   const typeClass = twMerge(
     clsx(
-      "w-[98px] h-[116px] rounded-lg border border-black justify-center items-center gap-2 flex",
+      "w-full h-full rounded-lg justify-center items-center gap-2 flex",
       imageColors[type]
     )
   );
@@ -34,7 +39,7 @@ const PokeImage = ({ type, url }) => {
   return (
     <>
       <div className={typeClass}>
-        <img className="w-20 h-20" src={url} />
+        <img className={"w-20 h-20"} src={url} />
       </div>
     </>
   );
