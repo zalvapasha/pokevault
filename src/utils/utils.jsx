@@ -12,7 +12,7 @@ export function replaceDashWithSpace(str) {
 
 export function toTitleCase(str) {
   if (!str) {
-    return str;
+    return "";
   } else {
     return str
       .toLowerCase()
