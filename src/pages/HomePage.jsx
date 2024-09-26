@@ -4,7 +4,7 @@ import { fetchData } from "../utils/api";
 
 const HomePage = () => {
   const [page, setPage] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0"
+    "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
   );
   const [pagination, setPagination] = useState({ next: null, previous: null });
   const [pokemonData, setPokemonData] = useState([]);
