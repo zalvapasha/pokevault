@@ -68,12 +68,13 @@ const HomePage = () => {
   };
 
   return (
-    <main className="max-w-5xl mx-auto flex flex-col items-center mb-10">
-      <button type="button" onClick={handleClearSearch} className="">
+    <main className="w-full p-4 md:max-w-5xl md:p-4 mx-auto flex flex-col items-center mb-10">
+    <button type="button" onClick={handleClearSearch} className="">
         <FaXmark />
       </button>
-      <section className="flex justify-between max-w-[992px] w-full m-4">
-        <form
+      <section className="flex flex-col items-center lg:items-start">
+        <section className="flex justify-between w-full md:w-[586px] max-w-[992px] mb-4">
+          <form
           onSubmit={handleSearchSubmit}
           className="bg-[#efefef] rounded-lg border-2 border-black py-2 px-3"
         >
@@ -98,29 +99,34 @@ const HomePage = () => {
             </button>
           )}
         </form>
-
-        <div className="flex gap-2">
-          <button
-            onClick={handlePrevious}
-            disabled={!pagination.previous}
-            className="text-black bg-[#efefef] rounded-lg border-2 border-black p-3 transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:shadow-none disabled:translate-x-[3px] disabled:translate-y-[3px]"
-          >
-            <FaArrowLeft />
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={!pagination.next}
-            className="text-black bg-[#efefef] rounded-lg border-2 border-black p-3 transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:translate-x-[3px] disabled:translate-y-[3px]"
-          >
-            <FaArrowRight />
-          </button>
+          <div className="flex gap-2 mt-4 ">
+            <button
+              onClick={handlePrevious}
+              disabled={!pagination.previous}
+              className="bg-[#efefef] rounded-lg border-l-2 border-r-2 border-t-2 border-b-2 border-black p-3 transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:shadow-none disabled:translate-x-[3px] disabled:translate-y-[3px]"
+            >
+              <FaArrowLeft />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={!pagination.next}
+              className="bg-[#efefef] rounded-lg border-l-2 border-r-2 border-t-2 border-b-2 border-black p-3 transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:translate-x-[3px] disabled:translate-y-[3px]"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
+        </section>
+        <div className="flex flex-wrap md:grid md:grid-cols-2 lg:flex lg:flex-wrap gap-4 max-w-[992px] justify-center">
+          {pokemonData.map((poke, i) => {
+            // const pokeId = poke.url.split("/").filter(Boolean).pop();
+            return (
+              // <Link key={i} to={`/detail/${pokeId}`}>
+              <Card url={poke.url} />
+              /* </Link> */
+            );
+          })}
         </div>
       </section>
-      <div className="flex flex-wrap gap-4 max-w-[992px] w-full">
-        {pokemonData.map((poke, i) => (
-          <Card key={i} url={poke.url} />
-        ))}
-      </div>
     </main>
   );
 };

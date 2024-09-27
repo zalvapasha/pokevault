@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <header className="sticky top-0 z-10 flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3 border border-t-0 border-l-0 border-r-0 border-b-4 border-black">
       <nav className="max-w-[1024px] w-full mx-auto  sm:flex sm:items-center sm:justify-between">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center px-2 justify-between">
           <div className="flex gap-2">
             <img src={logo} className="w-10 h-10 " />
             <a
@@ -63,7 +63,7 @@ const NavBar = () => {
         </div>
         <div
           id="hs-navbar-example"
-          className="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          className="hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block px-4"
           aria-labelledby="hs-navbar-example-collapse"
         >
           <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
