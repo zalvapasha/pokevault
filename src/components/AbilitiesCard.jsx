@@ -2,16 +2,21 @@ import { fetchDetails } from "../utils/api";
 import React, { useEffect, useState } from "react";
 import { toTitleCase } from "../utils/utils";
 import { replaceDashWithSpace } from "../utils/utils";
+import daisyui from "daisyui";
 
 const AbilitiesCard = ({ abilities }) => {
   const [abilityDetails, setAbilityDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getAbilityData = async () => {
     try {
+      setIsLoading(true);
       const data = await fetchDetails(abilities.ability.url); // Fetch details from ability URL
       setAbilityDetails(data); // Set the fetched data to state
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -19,8 +24,8 @@ const AbilitiesCard = ({ abilities }) => {
     getAbilityData();
   }, [abilities]);
 
-  if (!abilityDetails) {
-    return <p>Loading ability details...</p>;
+  if (isLoading) {
+    return <span className="loading loading-spinner loading-lg"></span>;
   }
 
   const abilityDescription =
