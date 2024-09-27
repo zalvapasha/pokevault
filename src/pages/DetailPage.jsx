@@ -13,7 +13,7 @@ import { replaceDashWithSpace } from "../utils/utils";
 import daisyui from "daisyui";
 
 const DetailPage = ({ details }) => {
-  const { id } = useParams(); // Get the ID from the URL
+  const { id } = useParams();
   const [detailPage, setDetailPage] = useState(null);
 
   const getData = async () => {

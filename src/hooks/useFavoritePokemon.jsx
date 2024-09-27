@@ -7,7 +7,9 @@ export const useFavoritePokemon = (id, name, url) => {
 
   const checkIfFavorite = async () => {
     try {
-      const response = await fetch(`http://localhost:3030/favorites`);
+      const response = await fetch(
+        `https://positive-sphenoid-top.glitch.me/favorites`
+      );
       const datas = await response.json();
       const favorite = datas.find((data) => Number(data.id) === id);
       setIsFavorite(!!favorite);
