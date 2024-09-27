@@ -22,12 +22,12 @@ const FavoritePage = () => {
     <main className="w-full p-4 md:max-w-5xl md:p-4 mx-auto flex flex-col items-center">
       <section className="flex flex-col justify-center w-full">
         <section className="max-w-[992px]">
-          <h2 className="text-black text-xl font-medium my-4">
+          <h2 className="text-black text-xl font-medium my-4 text-center">
             My Favorite Pokémon
           </h2>
         </section>
 
-        <div className="flex flex-wrap gap-4 max-w-[992px] justify-start">
+        <div className="flex flex-wrap gap-4 max-w-[992px] justify-center">
           {pokemonData.length > 0 ? (
             pokemonData.map((poke, i) => <Card key={i} url={poke.url} />)
           ) : (
