@@ -56,7 +56,7 @@ const Card = ({ url }) => {
           <div className="self-stretch grow shrink basis-0 flex-col justify-start items-start flex">
             <div className="self-stretch justify-start items-start flex flex-col">
               <div className="flex-col justify-start items-start flex">
-                <h3 className="text-[#080808] text-lg font-semibold leading-[25.20px]">
+                <h3 className="text-[#080808] text-base lg:text-lg font-semibold leading-[25.20px]">
                   {toTitleCase(details.name)}
                 </h3>
                 <p className="text-[#454545] text-sm font-normal leading-tight">

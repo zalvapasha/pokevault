@@ -42,10 +42,10 @@ const AbilitiesCard = ({ abilities }) => {
   return (
     <>
       <div className="flex flex-col gap-1">
-        <p className="text-[#080808] text-base font-semibold font-['DM Sans'] leading-snug">
+        <p className="text-[#080808] text-sm md:text-base font-semibold font-['DM Sans'] leading-snug">
           {toTitleCase(replaceDashWithSpace(abilities.ability.name))}
         </p>
-        <p className="text-[#454545] text-sm font-normal font-['DM Sans'] leading-tight">
+        <p className="text-[#454545] text-xs md:text-sm font-normal font-['DM Sans'] leading-tight">
           {replaceDashWithSpace(abilityDescription)}
         </p>
       </div>
