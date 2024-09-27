@@ -43,7 +43,7 @@ const Card = ({ url }) => {
     <div className="relative">
       <Link
         to={`/detail/${details.id}`}
-        className="w-full md:w-full lg:w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-4 border-t-2 border-b-4 border-black justify-start items-start gap-3 inline-flex"
+        className="w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-4 border-t-2 border-b-4 border-black justify-start items-start gap-3 inline-flex"
       >
         {details.sprites && details.types && (
           <PokeImage
@@ -65,16 +65,16 @@ const Card = ({ url }) => {
               </div>
 
               {/* Add space here */}
-              <div className="mt-2 flex justify-start items-start gap-1">
-                {details.types?.map((type, i) => (
-                  <Types key={i} type={type.type.name} />
-                ))}
-              </div>
-
               <div className="flex-col justify-start items-start mt-2">
                 <p className="text-[#454545] italic text-[13px] font-normal leading-[18.20px]">
                   {details.moves?.length} moves
                 </p>
+              </div>
+
+              <div className="mt-2 flex justify-start items-start gap-1">
+                {details.types?.map((type, i) => (
+                  <Types key={i} type={type.type.name} />
+                ))}
               </div>
             </div>
           </div>
