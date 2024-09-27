@@ -22,8 +22,12 @@ const Card = ({ url }) => {
       setIsLoading(true);
       const data = await fetchDetails(url);
       setDetails(data);
+
       setIsLoading(false);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
+
   }
 
   useEffect(() => {
@@ -62,26 +66,27 @@ const Card = ({ url }) => {
                   </p>
                 </div>
               </div>
-              <img
-                src={isFavorite ? pokeballFilled : pokeBall}
-                onClick={toggleFavorite}
-                className="w-8 h-8 relative"
-              />
-            </div>
-            <div className="flex-col justify-start items-start gap-2 flex">
-              <p className="text-[#454545] italic text-[13px] font-normal leading-[18.20px]">
-                {details.moves?.length} moves
-              </p>
-              <div className="justify-start items-start gap-1 inline-flex">
-                {details.types?.map((type, i) => (
-                  <Types key={i} type={type.type.name} />
-                ))}
+              <div className="flex-col justify-start items-start gap-2 flex">
+                <p className="text-[#454545] italic text-[13px] font-normal leading-[18.20px]">
+                  {details.moves?.length} moves
+                </p>
+                <div className="justify-start items-start gap-1 inline-flex">
+                  {details.types?.map((type, i) => (
+                    <Types key={i} type={type.type.name} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+      <img
+        src={isFavorite ? pokeballFilled : pokeBall}
+        alt="Favorite icon"
+        onClick={toggleFavorite}
+        className=" absolute w-8 h-8 top-4 right-4 cursor-pointer"
+      />
+    </div>
   );
 };
 

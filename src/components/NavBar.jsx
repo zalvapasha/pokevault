@@ -10,7 +10,7 @@ const NavBar = () => {
           <div className="flex gap-2">
             <img src={logo} className="w-10 h-10 " />
             <a
-              className="flex-none text-3xl font-bold focus:outline-none focus:opacity-80 cursor-default"
+              className="flex-none text-black text-3xl font-bold focus:outline-none cursor-default"
               aria-label="Brand"
             >
               PokeVault

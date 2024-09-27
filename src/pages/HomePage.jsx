@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { fetchData } from "../utils/api";
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaArrowRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { FaXmark, FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { MdOutlineSearch } from "react-icons/md";
+import { useSearchParams } from "react-router-dom";
 
 const HomePage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q") || "";
+
   const [page, setPage] = useState(
     "https://pokeapi.co/api/v2/pokemon?limit=18&offset=0"
   );
   const [pagination, setPagination] = useState({ next: null, previous: null });
   const [pokemonData, setPokemonData] = useState([]);
+  const [inputValue, setInputValue] = useState(searchQuery);
 
   const getData = async () => {
     try {
-      const data = await fetchData(page);
-      setPokemonData(data.results);
+      const data = await fetchData(
+        searchQuery
+          ? "https://pokeapi.co/api/v2/pokemon?offset=0&limit=2024"
+          : page
+      );
       setPagination({ next: data.next, previous: data.previous });
+      if (searchQuery) {
+        const filteredData = data.results.filter((pokemon) =>
+          pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setPokemonData(filteredData);
+      } else {
+        setPokemonData(data.results);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -24,7 +39,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, [searchQuery, page]);
 
   const handleNext = () => {
     if (pagination.next) {
@@ -38,21 +53,52 @@ const HomePage = () => {
     }
   };
 
-  // const getMovesData = async () => {
-  //   try {
-  //     const data = await fetchData("https://pokeapi.co/api/v2/move/");
-  //     console.log(data, "ini data");
-  //   } catch (error) {}
-  // };
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-  // useEffect(() => {
-  //   getMovesData();
-  // });
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setSearchParams({ q: inputValue });
+  };
+
+  const handleClearSearch = () => {
+    setInputValue("");
+    setSearchParams({});
+  };
 
   return (
     <main className="w-full p-4 md:max-w-5xl md:p-4 mx-auto flex flex-col items-center mb-10">
+    <button type="button" onClick={handleClearSearch} className="">
+        <FaXmark />
+      </button>
       <section className="flex flex-col items-center lg:items-start">
         <section className="flex justify-between w-full md:w-[586px] max-w-[992px] mb-4">
+          <form
+          onSubmit={handleSearchSubmit}
+          className="bg-[#efefef] rounded-lg border-2 border-black py-2 px-3"
+        >
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Search Pokémon"
+            className="border-none bg-transparent focus:outline-none text-black font-medium mr-2"
+          />
+          {searchQuery ? (
+            <button
+              type="button"
+              onClick={handleClearSearch}
+              className="text-black"
+            >
+              <FaXmark />
+            </button>
+          ) : (
+            <button type="submit" className="text-black">
+              <MdOutlineSearch size={17} />
+            </button>
+          )}
+        </form>
           <div className="flex gap-2 mt-4 ">
             <button
               onClick={handlePrevious}
