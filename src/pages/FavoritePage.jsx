@@ -7,7 +7,9 @@ const FavoritePage = () => {
 
   const getData = async () => {
     try {
-      const data = await fetchData("http://localhost:3030/favorites");
+      const data = await fetchData(
+        "https://positive-sphenoid-top.glitch.me/favorites"
+      );
       setPokemonData(data);
     } catch (error) {
       console.error("Error fetching data:", error);

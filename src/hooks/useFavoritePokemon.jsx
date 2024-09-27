@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { toast, Bounce } from "react-toastify"; // Import toast
+import { toast, Bounce } from "react-toastify";
+import Swal from "sweetalert2";
 
 export const useFavoritePokemon = (id, name, url) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -22,22 +23,38 @@ export const useFavoritePokemon = (id, name, url) => {
   async function toggleFavorite() {
     try {
       if (isFavorite) {
-        await fetch(`http://localhost:3030/favorites/${id}`, {
-          method: "DELETE",
+        const result = await Swal.fire({
+          title: "Are you sure?",
+          text: `You are about to remove ${name} from favorites!`,
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Yes, remove it!",
         });
-        toast.error(`${name} removed from favorites!`, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+
+        if (result.isConfirmed) {
+          await fetch(
+            `https://positive-sphenoid-top.glitch.me/favorites/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
+          toast.error(`${name} removed from favorites!`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+          setIsFavorite(false);
+        }
       } else {
-        await fetch("http://localhost:3030/favorites", {
+        await fetch("https://positive-sphenoid-top.glitch.me/favorites", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -55,8 +72,8 @@ export const useFavoritePokemon = (id, name, url) => {
           theme: "light",
           transition: Bounce,
         });
+        setIsFavorite(true);
       }
-      setIsFavorite(!isFavorite);
     } catch (error) {
       console.error("Error toggling favorite:", error);
       toast.error("Failed to toggle favorite!");

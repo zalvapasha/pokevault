@@ -76,7 +76,7 @@ const HomePage = () => {
         <section className="flex flex-row justify-between max-w-[992px] w-full items-center py-4 ">
           <form
             onSubmit={handleSearchSubmit}
-            className="bg-[#efefef] rounded-lg border-2 border-black h-max px-3 py-2"
+            className="bg-[#efefef] rounded-lg border-2 border-black h-max px-3 py-2 transition-all shadow-[3px_3px_0px_black]"
           >
             <input
               type="text"

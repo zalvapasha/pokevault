@@ -40,10 +40,10 @@ const Card = ({ url }) => {
       <div className="skeleton h-2 w-full bg-[#b0b0b0]"></div>
     </div>
   ) : (
-    <div className="relative">
+    <div className="relative w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-2 border-t-2 border-b-2 border-black transition-all shadow-[3px_3px_0px_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] disabled:shadow-none disabled:translate-x-[3px] disabled:translate-y-[3px]">
       <Link
         to={`/detail/${details.id}`}
-        className="w-80 h-[154px] p-4 bg-[#efefef] rounded-2xl border-l-2 border-r-4 border-t-2 border-b-4 border-black justify-start items-start gap-3 inline-flex"
+        className="w-full h-full justify-start items-start gap-3 inline-flex "
       >
         {details.sprites && details.types && (
           <PokeImage
@@ -84,7 +84,7 @@ const Card = ({ url }) => {
         src={isFavorite ? pokeballFilled : pokeBall}
         alt="Favorite icon"
         onClick={toggleFavorite}
-        className="absolute w-8 h-8 top-4 right-4 cursor-pointer"
+        className="absolute w-8 h-8 top-4 right-4 cursor-pointer hover:animate-spin"
       />
     </div>
   );
