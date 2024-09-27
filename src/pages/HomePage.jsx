@@ -69,37 +69,38 @@ const HomePage = () => {
 
   return (
     <main className="w-full p-4 md:max-w-5xl md:p-4 mx-auto flex flex-col items-center mb-10">
-    <button type="button" onClick={handleClearSearch} className="">
-        <FaXmark />
-      </button>
       <section className="flex flex-col items-center lg:items-start">
-        <section className="flex justify-between w-full md:w-[586px] max-w-[992px] mb-4">
+        {/* <button type="button" onClick={handleClearSearch} className="">
+          <FaXmark />
+        </button> */}
+        <section className="flex flex-row justify-between w-full items-center py-4">
           <form
-          onSubmit={handleSearchSubmit}
-          className="bg-[#efefef] rounded-lg border-2 border-black py-2 px-3"
-        >
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Search Pokémon"
-            className="border-none bg-transparent focus:outline-none text-black font-medium mr-2"
-          />
-          {searchQuery ? (
-            <button
-              type="button"
-              onClick={handleClearSearch}
-              className="text-black"
-            >
-              <FaXmark />
-            </button>
-          ) : (
-            <button type="submit" className="text-black">
-              <MdOutlineSearch size={17} />
-            </button>
-          )}
-        </form>
-          <div className="flex gap-2 mt-4 ">
+            onSubmit={handleSearchSubmit}
+            className="bg-[#efefef] rounded-lg border-2 border-black h-max px-3 py-2"
+          >
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Search Pokémon"
+              className="border-none bg-transparent focus:outline-none text-black font-medium mr-2"
+            />
+            {searchQuery ? (
+              <button
+                type="button"
+                onClick={handleClearSearch}
+                className="text-black"
+              >
+                <FaXmark />
+              </button>
+            ) : (
+              <button type="submit" className="text-black">
+                <MdOutlineSearch size={17} />
+              </button>
+            )}
+          </form>
+
+          <div className="flex gap-2">
             <button
               onClick={handlePrevious}
               disabled={!pagination.previous}
@@ -116,7 +117,7 @@ const HomePage = () => {
             </button>
           </div>
         </section>
-        <div className="flex flex-wrap md:grid md:grid-cols-2 lg:flex lg:flex-wrap gap-4 max-w-[992px] justify-center">
+        <div className="flex flex-wrap w-full md:grid md:grid-cols-2 lg:flex lg:flex-wrap gap-4 max-w-[992px] justify-center">
           {pokemonData.map((poke, i) => {
             // const pokeId = poke.url.split("/").filter(Boolean).pop();
             return (
