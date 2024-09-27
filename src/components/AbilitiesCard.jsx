@@ -25,7 +25,13 @@ const AbilitiesCard = ({ abilities }) => {
   }, [abilities]);
 
   if (isLoading) {
-    return <span className="loading loading-spinner loading-lg"></span>;
+    return (
+      <div className="flex w-full flex-col gap-4">
+        <div className="skeleton h-3 w-20 bg-[#b0b0b0]"></div>
+        <div className="skeleton h-2 w-full bg-[#b0b0b0]"></div>
+        <div className="skeleton h-2 w-full bg-[#b0b0b0]"></div>
+      </div>
+    );
   }
 
   const abilityDescription =
