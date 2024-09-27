@@ -10,6 +10,7 @@ import { convertToDecimal } from "../utils/utils";
 import MovesList from "../components/MovesList";
 import { toTitleCase } from "../utils/utils";
 import { replaceDashWithSpace } from "../utils/utils";
+import daisyui from "daisyui";
 
 const DetailPage = ({ details }) => {
   const { id } = useParams(); // Get the ID from the URL
@@ -31,12 +32,14 @@ const DetailPage = ({ details }) => {
   }, [id]);
 
   if (!detailPage) {
-    return <div>Loading...</div>;
+    return (
+      <span className="loading loading-spinner loading-lg absolute top-[50%] left-[50%]"></span>
+    );
   }
 
   return (
     <main className="max-w-[960px] mx-auto justify-center">
-      <div className="grid grid-cols-2 gap-3 mt-5 mb-5">
+      <div className="flex flex-col gap-3 mx-2 my-2 sm:grid sm:grid-cols-2 sm:gap-3 sm:mt-5 md:mb-5">
         <div className="flex flex-col gap-3 px-3 py-3 border rounded-lg border-[#000] bg-[#EFEFEF]">
           <div className="flex flex-row gap-4">
             <PokeImage
@@ -48,19 +51,14 @@ const DetailPage = ({ details }) => {
               <h3 className="text-[#080808] text-lg font-semibold leading-[25.20px]">
                 {toTitleCase(detailPage.name)}
               </h3>
-              <div className="flex flex-row gap-4 items-center ">
-                <p className="text-[#454545] text-sm font-normal leading-tight min-w-[88px]">
-                  Types
-                </p>
-                <div className="justify-start items-start gap-1 inline-flex">
-                  {detailPage.types?.map((type, i) => (
-                    <Types key={i} type={type.type.name} />
-                  ))}
-                </div>
+              <div className="justify-start items-start gap-1 inline-flex">
+                {detailPage.types?.map((type, i) => (
+                  <Types key={i} type={type.type.name} />
+                ))}
               </div>
-              <div className="flex flex-row gap-4 items-center ">
-                <p className="text-[#454545] text-sm font-normal leading-tight min-w-[88px]">
-                  National ID
+              <div className="flex flex-row gap-4 items-center">
+                <p className="text-[#454545] text-sm font-normal leading-tight w-[64px]">
+                  ID
                 </p>
                 <p className="text-[#454545] text-sm font-normal leading-tight">
                   № {detailPage.id}
@@ -68,7 +66,7 @@ const DetailPage = ({ details }) => {
               </div>
               <div className="flex flex-row gap-4 items-center ">
                 {/* Split height into meter */}
-                <p className="text-[#454545] text-sm font-normal leading-tight min-w-[88px]">
+                <p className="text-[#454545] text-sm font-normal leading-tight w-[64px]">
                   {" "}
                   Height{" "}
                 </p>
@@ -78,7 +76,7 @@ const DetailPage = ({ details }) => {
               </div>
               {/* Split weight into meter */}
               <div className="flex flex-row gap-4 items-center">
-                <p className="text-[#454545] text-sm font-normal leading-tight min-w-[88px]">
+                <p className="text-[#454545] text-sm font-normal leading-tight w-[64px]">
                   {" "}
                   Weight{" "}
                 </p>

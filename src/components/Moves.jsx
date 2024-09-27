@@ -29,22 +29,22 @@ const Moves = ({ moves }) => {
   return (
     <>
       <tr>
-        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+        <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-800">
           {toTitleCase(replaceDashWithSpace(movesDetails.name))}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-800">
           <Types type={movesDetails.type.name} />
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-800">
           {toTitleCase(replaceDashWithSpace(movesDetails.damage_class.name))}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-800">
           {nullMovesData(movesDetails.power)}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-800">
           {nullMovesData(movesDetails.accuracy)}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-800">
           {movesDetails.pp}
         </td>
       </tr>
